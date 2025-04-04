@@ -1,4 +1,4 @@
-steps:
+us-central1-demo-instance-14b6b574-bucketsteps:
   # Step 1: Install Python dependencies
   - name: 'python'
     entrypoint: pip
@@ -18,5 +18,5 @@ options:
 
 substitutions:
   _DAGS_DIRECTORY: "workflows/"
-  _DAGS_BUCKET: "us-central1-demo-instance-9e2e6451-bucket"
+  _DAGS_BUCKET: "us-central1-demo-instance-14b6b574-bucket"
   _DATA_DIRECTORY: "data/"
