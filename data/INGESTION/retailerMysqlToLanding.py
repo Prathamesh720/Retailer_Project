@@ -8,20 +8,20 @@ import json
 spark = SparkSession.builder.appName("RetailerMySQLToLanding").getOrCreate()
 
 # Google Cloud Storage (GCS) Configuration variables
-GCS_BUCKET = "retailer-datalake-project-27032025"
+GCS_BUCKET = "datalake-project"
 LANDING_PATH = f"gs://{GCS_BUCKET}/landing/retailer-db/"
 ARCHIVE_PATH = f"gs://{GCS_BUCKET}/landing/retailer-db/archive/"
 CONFIG_FILE_PATH = f"gs://{GCS_BUCKET}/configs/retailer_config.csv"
 
 # BigQuery Configuration
-BQ_PROJECT = "avd-databricks-demo"
+BQ_PROJECT = "prathamdev"
 BQ_AUDIT_TABLE = f"{BQ_PROJECT}.temp_dataset.audit_log"
 BQ_LOG_TABLE = f"{BQ_PROJECT}.temp_dataset.pipeline_logs"
-BQ_TEMP_PATH = f"{GCS_BUCKET}/temp/"  
+BQ_TEMP_PATH = f"/temp/"  
 
 # MySQL Configuration
 MYSQL_CONFIG = {
-    "url": "jdbc:mysql://34.132.173.221:3306/retailerDB?useSSL=false&allowPublicKeyRetrieval=true",
+    "url": "jdbc:mysql://35.225.146.37:3306/retailer-DB?useSSL=false&allowPublicKeyRetrieval=true",
     "driver": "com.mysql.cj.jdbc.Driver",
     "user": "myuser",
     "password": "mypass"
@@ -74,12 +74,14 @@ def save_logs_to_bigquery():
 
 
 ##---------------------------------------------------------------------------------------------------##
+# 1st step (pw)
 # Function to Read Config File from GCS
 def read_config_file():
     df = spark.read.csv(CONFIG_FILE_PATH, header=True)
     log_event("INFO", "✅ Successfully read the config file")
     return df
 ##---------------------------------------------------------------------------------------------------##
+# 2nd step , if their is any file in gcs move it to archieve and delete it from the source. (pw)
 # Function to Move Existing Files to Archive
 def move_existing_files_to_archive(table):
     blobs = list(storage_client.bucket(GCS_BUCKET).list_blobs(prefix=f"landing/retailer-db/{table}/"))
@@ -180,8 +182,8 @@ def extract_and_save_to_landing(table, load_type, watermark_col):
 # Main Execution
 config_df = read_config_file()
 
-for row in config_df.collect():
-    if row["is_active"] == '1':
+for row in config_df.collect():   # extract or read  config file row by row (pw)
+    if row["is_active"] == '1':    # if 1 then want that rec else skip (pw)
         db, src, table, load_type, watermark, _, targetpath = row
         move_existing_files_to_archive(table)
         extract_and_save_to_landing(table, load_type, watermark)
