@@ -10,6 +10,7 @@ OPTIONS (
   uris = ['gs://datalake-project/landing/retailer-db/orders/*.json']
 );
 
+
 CREATE EXTERNAL TABLE IF NOT EXISTS `prathamdev.bronze_dataset.customers`
 (
     customer_id INT64,
@@ -21,6 +22,7 @@ OPTIONS (
     format = 'JSON',
     uris = ['gs://datalake-project/landing/retailer-db/customers/*.json']
 );
+
 
 CREATE EXTERNAL TABLE IF NOT EXISTS `prathamdev.bronze_dataset.products`
 (
@@ -35,6 +37,7 @@ OPTIONS (
     uris = ['gs://datalake-project/landing/retailer-db/products/*.json']
 );
 
+
 CREATE EXTERNAL TABLE IF NOT EXISTS `prathamdev.bronze_dataset.categories`
 (
     category_id INT64,
@@ -45,6 +48,7 @@ OPTIONS (
     format = 'JSON',
     uris = ['gs://datalake-project/landing/retailer-db/categories/*.json']
 );
+
 
 CREATE EXTERNAL TABLE IF NOT EXISTS `prathamdev.bronze_dataset.order_items`
 (
