@@ -17,7 +17,7 @@ CONFIG_FILE_PATH = f"gs://{GCS_BUCKET}/configs/retailer_config.csv"
 BQ_PROJECT = "prathamdev"
 BQ_AUDIT_TABLE = f"{BQ_PROJECT}.temp_dataset.audit_log"
 BQ_LOG_TABLE = f"{BQ_PROJECT}.temp_dataset.pipeline_logs"
-BQ_TEMP_PATH = f"/temp/"  
+BQ_TEMP_PATH = f"{GCS_BUCKET}/temp/"
 
 # MySQL Configuration
 MYSQL_CONFIG = {
