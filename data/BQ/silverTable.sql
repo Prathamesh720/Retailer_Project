@@ -24,7 +24,7 @@ USING
     CURRENT_TIMESTAMP() AS effective_start_date,
     CURRENT_TIMESTAMP() AS effective_end_date,
     True as is_active
-  FROM `avd-databricks-demo.bronze_dataset.customers`) source
+  FROM `prathamdev.bronze_dataset.customers`) source
 ON target.customer_id = source.customer_id AND target.is_active = true
 WHEN MATCHED AND 
             (
