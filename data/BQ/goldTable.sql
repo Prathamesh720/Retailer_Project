@@ -54,7 +54,7 @@ SELECT
     SUM(oi.price * oi.quantity) AS total_revenue,
     AVG(cr.rating) AS avg_rating,
     COUNT(cr.review_text) AS total_reviews
-FROM `prathamdev.products` p
+FROM `prathamdev.silver_dataset.products` p
 LEFT JOIN `prathamdev.silver_dataset.categories` c ON p.category_id = c.category_id
 LEFT JOIN `prathamdev.silver_dataset.product_suppliers` ps ON p.product_id = ps.product_id
 LEFT JOIN `prathamdev.silver_dataset.suppliers` s ON ps.supplier_id = s.supplier_id
