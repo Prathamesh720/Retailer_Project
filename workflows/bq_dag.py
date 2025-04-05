@@ -6,7 +6,7 @@ from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobO
 
 # Define constants
 PROJECT_ID = "prathamdev"
-LOCATION = "us-east1"
+LOCATION = "US"
 SQL_FILE_PATH_1 = "/home/airflow/gcs/data/BQ/bronzeTable.sql"
 SQL_FILE_PATH_2 = "/home/airflow/gcs/data/BQ/silverTable.sql"
 SQL_FILE_PATH_3 = "/home/airflow/gcs/data/BQ/goldTable.sql"
