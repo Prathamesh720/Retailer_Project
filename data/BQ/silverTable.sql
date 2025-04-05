@@ -75,7 +75,7 @@ USING
     CURRENT_TIMESTAMP() AS effective_start_date,
     CURRENT_TIMESTAMP() AS effective_end_date,
     TRUE AS is_active
-  FROM `avd-databricks-demo.bronze_dataset.orders`) source
+  FROM `prathamdev.bronze_dataset.orders`) source
 ON target.order_id = source.order_id AND target.is_active = true
 WHEN MATCHED AND 
             (
@@ -96,7 +96,7 @@ USING
     CURRENT_TIMESTAMP() AS effective_start_date,
     CURRENT_TIMESTAMP() AS effective_end_date,
     TRUE AS is_active
-  FROM `avd-databricks-demo.bronze_dataset.orders`) source
+  FROM `prathamdev.bronze_dataset.orders`) source
 ON target.order_id = source.order_id AND target.is_active = true
 WHEN NOT MATCHED THEN 
     INSERT (order_id, customer_id, order_date, total_amount, updated_at, effective_start_date, effective_end_date, is_active)
@@ -124,7 +124,7 @@ USING
     CURRENT_TIMESTAMP() AS effective_start_date,
     CURRENT_TIMESTAMP() AS effective_end_date,
     TRUE AS is_active
-  FROM `avd-databricks-demo.bronze_dataset.order_items`) source
+  FROM `prathamdev.bronze_dataset.order_items`) source
 ON target.order_item_id = source.order_item_id AND target.is_active = true
 WHEN MATCHED AND 
             (
@@ -146,7 +146,7 @@ USING
     CURRENT_TIMESTAMP() AS effective_start_date,
     CURRENT_TIMESTAMP() AS effective_end_date,
     TRUE AS is_active
-  FROM `avd-databricks-demo.bronze_dataset.order_items`) source
+  FROM `prathamdev.bronze_dataset.order_items`) source
 ON target.order_item_id = source.order_item_id AND target.is_active = true
 WHEN NOT MATCHED THEN 
     INSERT (order_item_id, order_id, product_id, quantity, price, updated_at, effective_start_date, effective_end_date, is_active)
@@ -173,7 +173,7 @@ SELECT
     ELSE FALSE
   END AS is_quarantined
   
-FROM `avd-databricks-demo.bronze_dataset.categories`;
+FROM `prathamdev.bronze_dataset.categories`;
 
 --Step 1: Create the products Table in the Silver Layer
 CREATE TABLE IF NOT EXISTS `prathamdev.silver_dataset.products`
