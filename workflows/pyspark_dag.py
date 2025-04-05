@@ -13,7 +13,7 @@ from airflow.providers.google.cloud.operators.dataproc import (
 PROJECT_ID = "prathamdev"
 REGION = "us-east1"
 CLUSTER_NAME = "my-demo-cluster"
-COMPOSER_BUCKET = "us-central1-demo-instance-14b6b574-bucket"
+COMPOSER_BUCKET = "us-central1-avd-prac-2e531f9c-bucket"
 
 GCS_JOB_FILE_1 = f"gs://{COMPOSER_BUCKET}/data/INGESTION/retailerMysqlToLanding.py"
 PYSPARK_JOB_1 = {
@@ -28,15 +28,12 @@ PYSPARK_JOB_2 = {
     "placement": {"cluster_name": CLUSTER_NAME},
     "pyspark_job": {"main_python_file_uri": GCS_JOB_FILE_2},
 }
-
 GCS_JOB_FILE_3 = f"gs://{COMPOSER_BUCKET}/data/INGESTION/customerReviews_API.py"
 PYSPARK_JOB_3 = {
     "reference": {"project_id": PROJECT_ID},
     "placement": {"cluster_name": CLUSTER_NAME},
     "pyspark_job": {"main_python_file_uri": GCS_JOB_FILE_3},
 }
-
-
 ARGS = {
     "owner": "PRATHAMESH WAYKOS",
     "start_date": None,
